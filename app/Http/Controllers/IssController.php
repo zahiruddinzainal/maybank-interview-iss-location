@@ -71,11 +71,14 @@ class IssController extends Controller
             $response = $url->get('https://api.wheretheiss.at/v1/satellites/25544/positions?timestamps='. $before['timestamp']);
             $location = json_decode($response->getBody(), true);
 
+            $longitude = $location[0]['longitude'];
+            $latitude = $location[0]['latitude'];
+
             $locations_before->push([
                 'masa' => $before['masa'],
                 'timestamp' => $before['timestamp'],
-                'longitude' => $location[0]['longitude'],
-                'latitude' => $location[0]['latitude'],
+                'longitude' => $longitude,
+                'latitude' => $latitude,
             ]);
 
         }

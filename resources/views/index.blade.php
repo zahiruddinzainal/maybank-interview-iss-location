@@ -24,14 +24,15 @@
                         <form method="POST" action="{{ route('search') }}" class="form">
                             @csrf
                             <div class="form__group">
-                                <input class="form__input" type="datetime-local" name="date" required>
+                                <input id="input" class="form__input" type="datetime-local" name="date" required>
                                 <div class="form__input-after"></div>
                             </div>
                             <div class="form__group">
-                                <button id="submit" class="form__btn" type="submit">
+                                <button id="text" class="form__btn" type="submit">
                                     <span class="form__btn-text">Search</span>
                                 </button>
                             </div>
+                            <div id="loader" class="loader"></div>
                             <div class="form__group">
                                 <p class="form__text">Developed by
                                     <a href="https://zvhir.com" class="form__link"> zvhir.com</a>.
@@ -50,6 +51,18 @@
     </div>
     <!-- partial -->
     <script src="./script.js"></script>
+    <script>
+        var loader = document.getElementById('loader');
+        var button = document.getElementById('text');
+        button.onclick = function() {
+            var input = document.getElementById('input').value;
+            if (input) {
+                button.innerHTML = 'SEARCHING.. PLEASE WAIT';
+                button.style.color = "#000";
+                loader.style.display = "block";
+            }
+        };
+    </script>
 
 </body>
 

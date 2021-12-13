@@ -15,7 +15,7 @@
         <div class="login">
             <div class="login__inner">
                 <div class="login__header">
-                    <div class="login__title">
+                    <div class="login__title" style="margin-bottom: -100px; margin-left:-10px;">
                         <h1 class="login__heading">ISS Locator</h1>
                     </div>
                 </div>
@@ -23,10 +23,12 @@
                 <div class="login__content">
                     <div class="login__form">
                         <div class="form__group">
+                            <p class="form__text"><mark>Locations at requested time</mark></p><br>
                             <p class="form__text">At your requested time<br>
-                                which is<strong>{{ $requested_date->format('H:i A, j F Y') }}</strong>
-                                <br>ISS is located at {{ $location_input[0]['longitude'] }}(longitude) and
-                                <br>{{ $location_input[0]['latitude'] }}(latitude) <strong></strong>
+                                which is <strong>{{ $requested_date->format('H:i A, j F Y') }}</strong>,
+                                <br><br>ISS is located at 
+                                <br>- longitude: <strong>{{ $location_input[0]['longitude'] }}</strong> and
+                                <br>- latitude: <strong>{{ $location_input[0]['latitude'] }}.</strong>
                             </p>
                             <br>
                             <br>
