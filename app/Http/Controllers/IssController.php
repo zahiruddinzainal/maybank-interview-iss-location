@@ -95,4 +95,15 @@ class IssController extends Controller
 
         return view('result')->with(compact('locations_before', 'locations_after', 'location_input', 'requested_date'));
     }
+
+    public function map(Request $request){
+
+        // dd($request);
+        $location_at = json_decode($request->location_at)[0];
+        $locations_before = json_decode($request->locations_before);
+        $locations_after = json_decode($request->locations_after);
+        // dd($locations_before);
+
+        return view('map')->with(compact('location_at', 'locations_before', 'locations_after'));
+    }
 }

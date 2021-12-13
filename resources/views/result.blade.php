@@ -23,10 +23,10 @@
                 <div class="login__content">
                     <div class="login__form">
                         <div class="form__group">
-                            <p class="form__text"><mark>Locations at requested time</mark></p><br>
+                            <p class="form__text"><mark>Location at requested time</mark></p><br>
                             <p class="form__text">At your requested time<br>
                                 which is <strong>{{ $requested_date->format('H:i A, j F Y') }}</strong>,
-                                <br><br>ISS is located at 
+                                <br><br>ISS is located at
                                 <br>- longitude: <strong>{{ $location_input[0]['longitude'] }}</strong> and
                                 <br>- latitude: <strong>{{ $location_input[0]['latitude'] }}.</strong>
                             </p>
@@ -51,7 +51,32 @@
                             @endforeach
                         </div>
                     </div>
+
+                    <br>
+                    <br>
+                    <br>
+
+                    <div class="login__content">
+                        <div class="login__form">
+                            <form method="POST" action="{{ route('map') }}" class="form">
+                                @csrf
+                                <input type="text" name="location_at"  value="{{ json_encode($location_input,TRUE)}}" hidden>
+                                <input type="text" name="locations_before" value="{{ json_encode($locations_before,TRUE)}}" hidden>
+                                <input type="text" name="locations_after" value="{{ json_encode($locations_after,TRUE)}}" hidden>
+                                <div class="form__group">
+                                    <button class="form__btn" type="submit">
+                                        <span class="form__btn-text">View as map plot</span>
+                                    </button>
+                                </div>
+                                <div id="loader" class="loader"></div>
+                            </form>
+                        </div>
+                    </div>
+
+
                 </div>
+
+
                 <div class="login__footer">
                     <div class="login__subtitle">
                         <h3 class="login__subheading">Maybank Interview December 2021</h3>

@@ -1,0 +1,41 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.container, .container > div, .container > div #map-canvas {
+    height: inherit;
+}
+
+.footer {
+    height: 5rem;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+.center {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+.buttons {
+    width: 200px;
+    display: inline;
+    
+}
+    
+.action_btn {
+    width: 200px;
+    margin: 0 auto;
+    display: inline;
+}
+
+.content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}

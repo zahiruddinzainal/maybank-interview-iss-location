@@ -17,3 +17,4 @@ use App\Http\Controllers\IssController;
 Route::get('/', [IssController::class, 'index']);
 Route::post('/search', [IssController::class, 'search'])->name('search');
 Route::get('/result', [IssController::class, 'result'])->name('result');
+Route::post('/map', [IssController::class, 'map'])->name('map');
