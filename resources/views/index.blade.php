@@ -14,31 +14,37 @@
     <div class="overlay">
         <div class="login">
             <div class="login__inner">
-                <div class="login__header">
-                    <div class="login__title">
-                        <h1 class="login__heading">ISS Locator</h1>
-                    </div>
-                </div>
                 <div class="login__content">
                     <div class="login__form">
-                        <form method="POST" action="{{ route('search') }}" class="form">
-                            @csrf
+                        <div class="form">
                             <div class="form__group">
-                                <input id="input" class="form__input" type="datetime-local" name="date" required>
-                                <div class="form__input-after"></div>
+                                <a href="/locator" class="form__btn" type="submit">
+                                    <span class="form__btn-text">ISS Locator</span>
+                                </a>
                             </div>
                             <div class="form__group">
-                                <button id="text" class="form__btn" type="submit">
-                                    <span class="form__btn-text">Search</span>
-                                </button>
+                                <a href="/visualizer" class="form__btn" type="submit">
+                                    <span class="form__btn-text">PATH VISUALIZER</span>
+                                </a>
                             </div>
+                            <div class="form__group">
+                                <a href="/api" class="form__btn" type="submit">
+                                    <span class="form__btn-text">API GATEWAY</span>
+                                </a>
+                            </div>
+                            <div class="form__group">
+                                <a href="/more" class="form__btn" type="submit">
+                                    <span class="form__btn-text">More</span>
+                                </a>
+                            </div>
+
                             <div id="loader" class="loader"></div>
                             <div class="form__group">
-                                <p class="form__text">Developed by
+                                <p class="form__text">Crafted by
                                     <a href="https://zvhir.com" class="form__link"> zvhir.com</a>.
                                 </p>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
                 <div class="login__footer">
@@ -49,21 +55,6 @@
             </div>
         </div>
     </div>
-    <!-- partial -->
-    <script src="./script.js"></script>
-    <script>
-        var loader = document.getElementById('loader');
-        var button = document.getElementById('text');
-        button.onclick = function() {
-            var input = document.getElementById('input').value;
-            if (input) {
-                button.innerHTML = 'SEARCHING.. PLEASE WAIT';
-                button.style.color = "#000";
-                loader.style.display = "block";
-            }
-        };
-    </script>
-
 </body>
 
 </html>

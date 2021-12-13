@@ -7,12 +7,16 @@ use Illuminate\Http\Request;
 class IssController extends Controller
 {
     public function index(){
+        return view('index');
+    }
+
+    public function locator(){
         $url = new \GuzzleHttp\Client();
         $response = $url->get('https://api.wheretheiss.at/v1/satellites/25544');
         $location = json_decode($response->getBody(), true);
         // dd($location);
 
-        return view('index')->with(compact('location'));
+        return view('locator.index')->with(compact('location'));
     }
 
     public function search(Request $request){
@@ -93,7 +97,7 @@ class IssController extends Controller
 
         // dd($location_input[0]['longitude']);
 
-        return view('result')->with(compact('locations_before', 'locations_after', 'location_input', 'requested_date'));
+        return view('locator.result')->with(compact('locations_before', 'locations_after', 'location_input', 'requested_date'));
     }
 
     public function map(Request $request){
@@ -104,6 +108,30 @@ class IssController extends Controller
         $locations_after = json_decode($request->locations_after);
         // dd($locations_before);
 
-        return view('map')->with(compact('location_at', 'locations_before', 'locations_after'));
+        return view('locator.map')->with(compact('location_at', 'locations_before', 'locations_after'));
     }
+
+    public function more(){
+        return view('more.index');
+    }
+
+    public function apod(){
+        $api_key = 'haQeCa13UlufBW7H8LCzm2NgSX9ZTGEYv1Ciu2uf';
+        $url = new \GuzzleHttp\Client();
+        $response = $url->get('https://api.nasa.gov/planetary/apod?api_key='. $api_key);
+        $data = json_decode($response->getBody(), true);
+        // dd($data);
+        return view('more.apod')->with(compact('data'));
+    }
+
+    public function mars(){
+        $api_key = 'haQeCa13UlufBW7H8LCzm2NgSX9ZTGEYv1Ciu2uf';
+        $url = new \GuzzleHttp\Client();
+        $response = $url->get('https://api.nasa.gov/insight_weather/?api_key='. $api_key.'&feedtype=json&ver=1.0');
+        $data = json_decode($response->getBody(), true);
+        // dd($data);
+        return view('more.mars')->with(compact('data'));
+    }
+
+    
 }
