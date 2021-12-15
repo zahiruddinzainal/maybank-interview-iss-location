@@ -18,19 +18,21 @@ class IssController extends Controller
 
         $requested_date = new \DateTime($request->date);
 
+        $endpoint_url = env('SATELLITE_API_ENDPOINT_URL');
+
         //TO GET TIME AND LOCATIONS FOR REQUESTED TIME
         $url = new \GuzzleHttp\Client();
-        $response = $url->get('http://api.test/api/satelite/25544/timestamp/'. $request->date);
+        $response = $url->get($endpoint_url . 'satelite/25544/timestamp/'. $request->date);
         $location_input = json_decode($response->getBody(), true);
 
         //TO GET TIME AND LOCATIONS BEFORE EVERY 10 MINUTES
         $url = new \GuzzleHttp\Client();
-        $response = $url->get('http://api.test/api/before/satelite/25544/timestamp/'. strtotime($request->date));
+        $response = $url->get($endpoint_url . 'before/satelite/25544/timestamp/'. strtotime($request->date));
         $locations_before = json_decode($response->getBody(), true);
 
         //TO GET TIME AND LOCATIONS AFTER EVERY 10 MINUTES
         $url = new \GuzzleHttp\Client();
-        $response = $url->get('http://api.test/api/after/satelite/25544/timestamp/'. strtotime($request->date));
+        $response = $url->get($endpoint_url . 'after/satelite/25544/timestamp/'. strtotime($request->date));
         $locations_after = json_decode($response->getBody(), true);
 
         return view('locator.result')->with(compact('requested_date', 'location_input', 'locations_before', 'locations_after'));
@@ -42,17 +44,17 @@ class IssController extends Controller
 
         //TO GET TIME AND LOCATIONS FOR REQUESTED TIME
         $url = new \GuzzleHttp\Client();
-        $response = $url->get('http://api.test/api/satelite/25544/timestamp/'. $now);
+        $response = $url->get($endpoint_url . 'satelite/25544/timestamp/'. $now);
         $location_at = json_decode($response->getBody(), true);
 
         //TO GET TIME AND LOCATIONS BEFORE EVERY 10 MINUTES
         $url = new \GuzzleHttp\Client();
-        $response = $url->get('http://api.test/api/before/satelite/25544/timestamp/'. strtotime($now));
+        $response = $url->get($endpoint_url . 'before/satelite/25544/timestamp/'. strtotime($now));
         $locations_before = json_decode($response->getBody(), true);
 
         //TO GET TIME AND LOCATIONS AFTER EVERY 10 MINUTES
         $url = new \GuzzleHttp\Client();
-        $response = $url->get('http://api.test/api/after/satelite/25544/timestamp/'. strtotime($now));
+        $response = $url->get($endpoint_url . 'after/satelite/25544/timestamp/'. strtotime($now));
         $locations_after = json_decode($response->getBody(), true);
 
         return view('visualizer.index')->with(compact('now', 'location_at', 'locations_before', 'locations_after'));
