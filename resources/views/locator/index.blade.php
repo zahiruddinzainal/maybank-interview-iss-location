@@ -24,7 +24,8 @@
                         <form method="POST" action="{{ route('search') }}" class="form">
                             @csrf
                             <div class="form__group">
-                                <input id="input" class="form__input" type="datetime-local" name="date" placeholder="Pick a date" required>
+                                <input id="input" class="form__input" type="datetime-local" name="date"
+                                    placeholder="Pick a date" required>
                                 <div class="form__input-after"></div>
                             </div>
                             <div class="form__group">
@@ -32,9 +33,12 @@
                                     <span class="form__btn-text">Search</span>
                                 </button>
                             </div>
-                            <div id="loader" class="loader"></div>
+                            <div id="loader" class="loader" style="display: none;"></div>
                             <div class="form__group">
-                                <p class="form__text">Developed by
+                                <p id="loading_text" style="display: none; margin: auto;">Searching.. Please wait..</p>
+                            </div>
+                            <div class="form__group">
+                                <p class="form__text">Crafted by
                                     <a href="https://zvhir.com" class="form__link"> zvhir.com</a>.
                                 </p>
                             </div>
@@ -51,11 +55,13 @@
     </div>
     <script>
         var loader = document.getElementById('loader');
+        var loading_text = document.getElementById('loading_text');
         var button = document.getElementById('text');
         button.onclick = function() {
             var input = document.getElementById('input').value;
             if (input) {
                 loader.style.display = "block";
+                loading_text.style.display = "block";
             }
         };
     </script>

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>ISS Path</title>
+    <title>Path Visualizer</title>
     <link rel="stylesheet" href="map.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
@@ -42,9 +42,12 @@
         var locations_before = @json($locations_before);
         var locations_after = @json($locations_after);
 
+        console.log(location_at[0]['latitude']);
+        console.log(location_at[0]['longitude']);
+
         function initializeMap() {
             var mapOptions = {
-                center: new google.maps.LatLng(location_at['latitude'], location_at['longitude']),
+                center: new google.maps.LatLng(location_at[0]['latitude'], location_at[0]['longitude']),
                 zoom: 3,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
@@ -52,7 +55,7 @@
 
             // LIVE LOCATION
             var gps = new google.maps.Marker({
-                position: new google.maps.LatLng(location_at['latitude'], location_at['longitude']),
+                position: new google.maps.LatLng(location_at[0]['latitude'], location_at[0]['longitude']),
                 map: map,
                 icon: {
                     url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
@@ -61,7 +64,7 @@
                 label: {
                     color: '#fff',
                     fontSize: '9px',
-                    text: 'Last location of ISS is here at ' + new Date(location_at['timestamp'] * 1000)
+                    text: 'Last location of ISS is here at ' + @json($now)
                 }
             });
             google.maps.event.addListener(gps, "click", function() {

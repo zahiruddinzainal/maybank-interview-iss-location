@@ -26,8 +26,8 @@
                             <h1 class="login__heading">Astronomy picture of the Day</h1>
                             <p>{{ $data['explanation'] }}</p>
                             <img class="spacing" src="{{ $data['url'] }}" width="100%" height="300">
-                            <p class="spacing">{{ $data['title'] }}</p>
-                            <p>© Copyright {{ $data['copyright'] }}. <span>Source: <a target="_blank" href="https://api.nasa.gov/">https://api.nasa.gov</a></span></p>
+                            <p class="spacing">{{ $data['title'] }}. </p><br>
+                            <p class="spacing">Source: <a target="_blank" href="https://api.nasa.gov/">https://api.nasa.gov</a></p>
 
                             <div class="form__group" >
                                 <a target="_blank" href="{{ $data['hdurl'] }}" class="form__btn spacing" type="submit">

@@ -17,11 +17,11 @@
                 <div class="login__content">
                     <div class="login__form">
                         <div class="form__group">
-                            <h1 class="login__heading">ISS Locator</h1>
+                            <h1 class="login__heading">ISS Location</h1>
                             <p class="form__text"><mark>Location at requested time</mark></p><br>
                             <p class="form__text">At your requested time<br>
                                 which is <strong>{{ $requested_date->format('H:i A, j F Y') }}</strong>,
-                                <br><br>ISS is located at
+                                <br><br>ISS is located at:<br>
                                 <br>- longitude: <strong>{{ $location_input[0]['longitude'] }}</strong> and
                                 <br>- latitude: <strong>{{ $location_input[0]['latitude'] }}.</strong>
                             </p>
@@ -29,7 +29,7 @@
                             <br>
                             <p class="form__text"><mark>Locations before every 10 minutes</mark></p><br>
                             @foreach ($locations_before as $location)
-                                <p class="form__text">At {{ $location['masa'] }} <br> The longitude is at
+                                <p class="form__text">At <strong>{{ $location['round'] }} minutes</strong> ago, {{ $location['masa'] }} <br> The longitude is at
                                     <strong>{{ $location['longitude'] }}</strong> and<br>the latitude is at
                                     <strong>{{ $location['latitude'] }}</strong>
                                 </p>
@@ -38,7 +38,7 @@
                             <br><br>
                             <p class="form__text"><mark>Locations after every 10 minutes</mark></p><br>
                             @foreach ($locations_after as $location)
-                                <p class="form__text">At {{ $location['masa'] }} <br> The longitude is at
+                                <p class="form__text">At next <strong>{{ $location['round'] }} minutes</strong>, {{ $location['masa'] }} <br> The longitude is at
                                     <strong>{{ $location['longitude'] }}</strong> and<br>the latitude is at
                                     <strong>{{ $location['latitude'] }}</strong>
                                 </p>

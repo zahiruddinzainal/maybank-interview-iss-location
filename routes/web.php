@@ -22,3 +22,4 @@ Route::post('/map', [IssController::class, 'map'])->name('map');
 Route::get('/more', [IssController::class, 'more'])->name('more');
 Route::get('/apod', [IssController::class, 'apod'])->name('apod');
 Route::get('/mars', [IssController::class, 'mars'])->name('mars');
+Route::get('/visualizer', [IssController::class, 'visualizer'])->name('visualizer');
