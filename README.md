@@ -43,6 +43,3 @@ Astronomy picture of the day. Source from NASA API.
 
 ![](https://interview.zvhir.com/public/iss/7.png)
 Mars weather. Source from NASA API.
-
-## About developer
-[Visit all my works here](https://zvhir.com)
